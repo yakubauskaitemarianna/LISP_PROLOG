@@ -1,0 +1,74 @@
+\section{Практическая часть}
+
+\begin{lstlisting}
+
+(SETF a 2) 
+(SETF B 3) 
+(SETF C 5)
+
+A => 2
+B => 3
+C => 5
+
+'A => A
+'(+ A C) => (+ A C)
+(A) => EVAL: underfined function A
+(EVAL 'A) => 2
+
+(DEFUN A() 'B)
+(DEFUN B() 4)
+
+A => 2
+B => 3
+C => 5
+'A => A
+'(+ A C) => (+ A C)
+(A) => B
+(+ A A) => 4
+(+ (B) B) => 7
+(B B B) => EVAL/APPLY: too many arguments given to B
+
+(SETF A B)
+
+A => 3
+B => 3
+C => 5
+'A => A
+'(+ A C) => (+ A C)
+(A) => B
+(EVAL 'A) => 3
+
+(SETF C B)
+
+A => 3
+B => 3
+C => 3
+'A => A
+'(+ A C) => (+ A C)
+(A) => B
+(EVAL 'A) => 3
+
+(DEFUN A(X Y) (+ X Y))
+
+A => 3
+B => 3
+C => 3
+'A => A
+'(+ A C) => (+ A C)
+(A) => EVAL/APPLY: Too few arguments (0 instead of at least 2) given to A
+(EVAL 'A) => 3
+(A A A) => 6
+(A B A) => 6
+
+(DEFUN B(X Y) (SETF B (+ B 1)) (* X Y B))
+
+A => 3
+B => 3
+(B B B) => 36 
+\end{lstlisting}
+
+Напишите функцию, которая вычисляет катет по гипотенузе и другому катету.
+
+\begin{lstlisting}
+(DEFUN CATET(C1 G) (SQRT (- (* G G) (* C1 C1))))
+\end{lstlisting}
